@@ -46,9 +46,9 @@ Just include the plugin in your `pom.xml` and execute `mvn verify`.
 
 ```xml
 <project>
-	   <properties>
-		     <graph_width>1024</graph_width>
-	   </properties>
+    <properties>
+        <graph_width>1024</graph_width>
+    </properties>
 
     <dependencies>
         <dependency>
