@@ -33,7 +33,7 @@ HTML Extract example :
 
 ![html extract](doc/images/html_extract.png)
 
-## Usage
+## Usage Maven
 
 The maven groupId, artifactId and version, this plugin is in the **Maven Central Repository**
 
@@ -91,6 +91,13 @@ Just include the plugin in your `pom.xml` and execute `mvn verify`.
     </build>
 </project>
 ```
+
+## Simple jar tool
+This tool is a java jar, so it's could be use as simple jar (look at [Release](https://github.com/vdaburon/CreateHtmlForFilesInDirectory/releases) to download jar file)
+<pre>
+java -cp create-html-for-files-in-directory-&lt;version&gt;.jar io.github.vdaburon.jmeter.utils.HtmlGraphVisualizationGenerator jmeter/results index.html
+</pre>
+
 ## Link to others projects
 Usally this plugin is use with [jmeter-graph-tool-maven-plugin](https://github.com/vdaburon/jmeter-graph-tool-maven-plugin)
 
