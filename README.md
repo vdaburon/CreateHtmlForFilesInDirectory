@@ -101,7 +101,7 @@ java -cp create-html-for-files-in-directory-&lt;version&gt;.jar io.github.vdabur
 ## Link to others projects
 Usally this plugin is use with [jmeter-graph-tool-maven-plugin](https://github.com/vdaburon/jmeter-graph-tool-maven-plugin)
 
-and this plugin [csv-report-to-html](https://github.com/vdaburon/csv-report-to-html)
+and this plugin [csv-report-to-html](https://github.com/vdaburon/JMReportCsvToHtml)
 
 1) The **jmeter-graph-tool-maven-plugin** create the report csv files and graphs
 2) The **csv-report-to-html** create the **html table report** from the csv file
