@@ -81,8 +81,8 @@ public class HtmlGraphVisualizationGenerator {
 				File f = (File) tabFiles[i];
 				
 				String name = f.getName().toLowerCase();
-				if (name.endsWith("csv") || name.endsWith("gz")  || name.endsWith("zip") || name.endsWith("log") || name.endsWith("gif") ||
-					name.endsWith("png") || name.endsWith("bmp") || name.endsWith("jpg") || name.endsWith("jpeg") || name.endsWith("html")) {
+				if (name.endsWith("csv") || name.endsWith("jtl") || name.endsWith("xml") ||name.endsWith("gz")  || name.endsWith("zip") || name.endsWith("log")
+						|| name.endsWith("gif") || name.endsWith("png") || name.endsWith("bmp") || name.endsWith("jpg") || name.endsWith("jpeg") || name.endsWith("html")) {
 					
 					// folderRead = c:\dir1\dir2\dirIn, f =  c:\dir1\dir2\dirIn\logo.gif => nameRelative = logo.gif (remove the folderRead path)
 					String nameRelative = f.getCanonicalPath().substring(fDirWithFiles.getCanonicalPath().length() + 1);
@@ -90,7 +90,7 @@ public class HtmlGraphVisualizationGenerator {
 					out.write(LINE_SEP);
 					
 					
-					if (name.endsWith("csv") || name.endsWith("gz") || name.endsWith("zip") || name.endsWith("log")) {
+					if (name.endsWith("csv") || name.endsWith("jtl") || name.endsWith("xml") ||name.endsWith("gz") || name.endsWith("zip") || name.endsWith("log")) {
 						// link to the file
 						out.write("<a href='" + nameRelative + "'>" + nameRelative + "</a><br/><br/>");
 					}

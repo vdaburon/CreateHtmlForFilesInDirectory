@@ -3,6 +3,8 @@ This program recursively scans a directory looking for files of different types 
 
 The types of files searched are:
  * csv
+ * jtl
+ * xml
  * gz
  * zip
  * log
@@ -13,7 +15,7 @@ The types of files searched are:
  * jpeg
  * html
  
-The link is "&lt;a ref=" relative for files of type: csv, gz, zip, log (to download it)
+The link is "&lt;a ref=" relative for files of type: csv, jtl, xml, gz, zip, log (to download it)
 
 The link is "<img src=" relative for files of type: gif, png, bmp, jpg, jpeg (to view it)
 
@@ -40,7 +42,7 @@ The maven groupId, artifactId and version, this plugin is in the **Maven Central
 ```xml
 <groupId>io.github.vdaburon</groupId>
 <artifactId>create-html-for-files-in-directory</artifactId>
-<version>1.0</version>
+<version>1.1</version>
 ```
 Just include the plugin in your `pom.xml` and execute `mvn verify`.
 
@@ -54,7 +56,7 @@ Just include the plugin in your `pom.xml` and execute `mvn verify`.
         <dependency>
             <groupId>io.github.vdaburon</groupId>
             <artifactId>create-html-for-files-in-directory</artifactId>
-            <version>1.0</version>
+            <version>1.1</version>
         </dependency>
     </dependencies>
     
