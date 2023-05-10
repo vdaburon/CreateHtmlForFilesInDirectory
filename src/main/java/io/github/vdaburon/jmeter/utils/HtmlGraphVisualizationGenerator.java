@@ -6,6 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -25,7 +27,7 @@ public class HtmlGraphVisualizationGenerator {
 		
 		if (args.length != 2) {
 			System.err.println("Usage HtmlGraphVisualizationGenerator dirWithFiles fileOutHtml");
-			System.err.println("E.g. java -jar create-html-for-files-in-directory-<version>.jar -Dimage_width=1024 c:/jmeter/dir_results index.html");
+			System.err.println("E.g. java -Dimage_width=1024 -jar create-html-for-files-in-directory-<version>.jar c:/jmeter/dir_results index.html");
 			System.exit(1);
 		}
 		String dirWithFiles = args[0];
@@ -71,7 +73,7 @@ public class HtmlGraphVisualizationGenerator {
 			out.write("<body><br/><br/>");
 			out.write(LINE_SEP);
 
-			SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
+			SimpleDateFormat dateformat = new SimpleDateFormat("yyyy-MM-dd HH'h'mm'm'ss's'", Locale.getDefault());
 			String sDate = dateformat.format(new Date());
 			
 			out.write("<h1> Generated date " + sDate + "</h1><br/>");
@@ -86,13 +88,18 @@ public class HtmlGraphVisualizationGenerator {
 					
 					// folderRead = c:\dir1\dir2\dirIn, f =  c:\dir1\dir2\dirIn\logo.gif => nameRelative = logo.gif (remove the folderRead path)
 					String nameRelative = f.getCanonicalPath().substring(fDirWithFiles.getCanonicalPath().length() + 1);
+
 					out.write("<h2>" + nameRelative + "</h2><br/>");
 					out.write(LINE_SEP);
-					
-					
+
 					if (name.endsWith("csv") || name.endsWith("jtl") || name.endsWith("xml") ||name.endsWith("gz") || name.endsWith("zip") || name.endsWith("log")) {
+						long lengthBytes = f.length();
+						DecimalFormatSymbols symbols = DecimalFormatSymbols.getInstance();
+						symbols.setGroupingSeparator(' ');
+
+						DecimalFormat formatter = new DecimalFormat("###,###.##", symbols);
 						// link to the file
-						out.write("<a href='" + nameRelative + "'>" + nameRelative + "</a><br/><br/>");
+						out.write("<a href='" + nameRelative + "'>" + nameRelative + "</a>&nbsp;&nbsp;&nbsp;File size=" + formatter.format(lengthBytes) + " Bytes<br/><br/>");
 					}
 										
 					if (name.endsWith("gif") || name.endsWith("png") || name.endsWith("bmp") || name.endsWith("jpg") || name.endsWith("jpeg")) {

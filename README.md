@@ -42,9 +42,10 @@ The maven groupId, artifactId and version, this plugin is in the **Maven Central
 ```xml
 <groupId>io.github.vdaburon</groupId>
 <artifactId>create-html-for-files-in-directory</artifactId>
-<version>1.1</version>
+<version>1.2</version>
 ```
-Just include the plugin in your `pom.xml` and execute `mvn verify`.
+Just include the plugin in your `pom.xml` and execute `mvn verify` <br>
+or individual launch `mvn -Dgraph_width=950 exec:java@create_html_page_for_files_in_directory`
 
 ```xml
 <project>
@@ -56,7 +57,7 @@ Just include the plugin in your `pom.xml` and execute `mvn verify`.
         <dependency>
             <groupId>io.github.vdaburon</groupId>
             <artifactId>create-html-for-files-in-directory</artifactId>
-            <version>1.1</version>
+            <version>1.2</version>
         </dependency>
     </dependencies>
     
@@ -97,15 +98,22 @@ Just include the plugin in your `pom.xml` and execute `mvn verify`.
 ## Simple jar tool
 This tool is a java jar, so it's could be use as simple jar (look at [Release](https://github.com/vdaburon/CreateHtmlForFilesInDirectory/releases) to download jar file)
 <pre>
-java -cp create-html-for-files-in-directory-&lt;version&gt;.jar io.github.vdaburon.jmeter.utils.HtmlGraphVisualizationGenerator jmeter/results index.html
+java -Dimage_width=900 -cp create-html-for-files-in-directory-&lt;version&gt;.jar io.github.vdaburon.jmeter.utils.HtmlGraphVisualizationGenerator jmeter/results index.html
+or
+java -Dimage_width=900 -jar create-html-for-files-in-directory-&lt;version&gt;-jar-with-dependencies.jar jmeter/results index.html
 </pre>
 
 ## Link to others projects
-Usally this plugin is use with [jmeter-graph-tool-maven-plugin](https://github.com/vdaburon/jmeter-graph-tool-maven-plugin)
-
+Usally this plugin is use with [jmeter-graph-tool-maven-plugin](https://github.com/vdaburon/jmeter-graph-tool-maven-plugin)<br>
 and this plugin [csv-report-to-html](https://github.com/vdaburon/JMReportCsvToHtml)
-
 1) The **jmeter-graph-tool-maven-plugin** create the report csv files and graphs
 2) The **csv-report-to-html** create the **html table report** from the csv file
 3) The **create-html-for-files-in-directory** create a page html this links to images and files in a directory to show and add links
+
+## Versions
+Version 1.2 add the file size after the "&lt;a ref=" link
+
+Version 1.1 add link (a href) to jtl and xml files
+
+Version 1.0 initial version
 
