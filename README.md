@@ -37,7 +37,7 @@ HTML Extract example :
 
 ## Usage Maven
 
-The maven groupId, artifactId and version, this plugin is in the **Maven Central Repository**
+The maven groupId, artifactId and version, this plugin is in the **Maven Central Repository** [![Maven Central create-html-for-files-in-directory](https://maven-badges.herokuapp.com/maven-central/io.github.vdaburon/create-html-for-files-in-directory/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.vdaburon/create-html-for-files-in-directory)
 
 ```xml
 <groupId>io.github.vdaburon</groupId>
