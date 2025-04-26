@@ -1,7 +1,9 @@
 package io.github.vdaburon.jmeter.utils;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -22,12 +24,14 @@ import java.util.Locale;
 public class HtmlGraphVisualizationGenerator {
 	// CRLF ou LF ou CR
 	public static final String LINE_SEP = System.getProperty("line.separator");
+
+	public static final String K_TABLE_CONTENTS = "@@TABLE_OF_CONTENTS@@";
 	
 	public static void main(String[] args) {
 		
 		if (args.length != 2) {
 			System.err.println("Usage HtmlGraphVisualizationGenerator dirWithFiles fileOutHtml");
-			System.err.println("E.g. java -Dimage_width=1024 -jar create-html-for-files-in-directory-<version>.jar c:/jmeter/dir_results index.html");
+			System.err.println("E.g. java -Dimage_width=1024-Dadd_toc=true -jar create-html-for-files-in-directory-<version>.jar c:/jmeter/dir_results index.html");
 			System.exit(1);
 		}
 		String dirWithFiles = args[0];
@@ -44,6 +48,12 @@ public class HtmlGraphVisualizationGenerator {
 			}
 		}
 
+		String sIsAddToc = System.getProperty("add_toc");
+		boolean isAddToc = true;
+		if (sIsAddToc != null) {
+			isAddToc = Boolean.parseBoolean(sIsAddToc);
+		}
+
 		File fDirWithFiles = new File(dirWithFiles);
 		File fileIndex = new File(dirWithFiles + "/" + fileOutHtml);
 		if (fileIndex.exists()) {
@@ -52,6 +62,7 @@ public class HtmlGraphVisualizationGenerator {
 		}
 		
 		Object[] tabFiles = listFileOrderByName(fDirWithFiles);
+		ArrayList listTitles = new ArrayList<>();
 		
 		BufferedWriter out = null;
 		try {
@@ -78,21 +89,32 @@ public class HtmlGraphVisualizationGenerator {
 			
 			out.write("<h1> Generated date " + sDate + "</h1><br/>");
 			out.write(LINE_SEP);
-			
+
+			if (isAddToc) {
+				out.write(K_TABLE_CONTENTS + "<br/>");
+				out.write(LINE_SEP);
+				System.out.println("With a Table Of Contents");
+			}
+
 			for (int i = 0; i < tabFiles.length; i++) {
 				File f = (File) tabFiles[i];
 				
 				String name = f.getName().toLowerCase();
 				if (name.endsWith("csv") || name.endsWith("jtl") || name.endsWith("xml") ||name.endsWith("gz")  || name.endsWith("zip") || name.endsWith("log")
-						|| name.endsWith("gif") || name.endsWith("png") || name.endsWith("bmp") || name.endsWith("jpg") || name.endsWith("jpeg") || name.endsWith("html")) {
+						|| name.endsWith("xlsx") || name.endsWith("xls")
+						|| name.endsWith("gif") || name.endsWith("png") || name.endsWith("bmp") || name.endsWith("jpg") || name.endsWith("jpeg")
+						|| name.endsWith("html")) {
 					
 					// folderRead = c:\dir1\dir2\dirIn, f =  c:\dir1\dir2\dirIn\logo.gif => nameRelative = logo.gif (remove the folderRead path)
 					String nameRelative = f.getCanonicalPath().substring(fDirWithFiles.getCanonicalPath().length() + 1);
-
+					out.write("<p><a name=\"" + i + "\"></a></p>");
+					out.write(LINE_SEP);
 					out.write("<h2>" + nameRelative + "</h2><br/>");
 					out.write(LINE_SEP);
+					listTitles.add(nameRelative);
 
-					if (name.endsWith("csv") || name.endsWith("jtl") || name.endsWith("xml") ||name.endsWith("gz") || name.endsWith("zip") || name.endsWith("log")) {
+					if (name.endsWith("csv") || name.endsWith("jtl") || name.endsWith("xml") ||name.endsWith("gz") || name.endsWith("zip") || name.endsWith("log") ||
+							name.endsWith("xlsx") || name.endsWith("xls")) {
 						long lengthBytes = f.length();
 						DecimalFormatSymbols symbols = DecimalFormatSymbols.getInstance();
 						symbols.setGroupingSeparator(' ');
@@ -136,7 +158,15 @@ public class HtmlGraphVisualizationGenerator {
 				}
 			}
 		}
-	}
+
+ 		if (isAddToc) {
+			try {
+				replaceTableOfContentsByTitle(fileIndex, listTitles);
+			} catch (IOException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+    }
 	
 	@SuppressWarnings("unchecked")
 	public static Object[] listFileOrderByName(File folderRead) {
@@ -173,6 +203,33 @@ public class HtmlGraphVisualizationGenerator {
 	            }
 	        }
 	    }
+	}
+
+	public static void replaceTableOfContentsByTitle(File fileIndex, ArrayList <String> listTitles) throws IOException {
+		String allIndex = readAllFileToString(fileIndex.getCanonicalPath());
+		StringBuffer sbTitles = new StringBuffer(2048);
+		sbTitles.append("<h2>Table Of Contents</h2>" + LINE_SEP);
+		sbTitles.append("<h4>" + LINE_SEP);
+		for (int i = 0; i < listTitles.size(); i++) {
+			sbTitles.append("<a href=\"#" + i + "\">");
+			sbTitles.append(listTitles.get(i));
+			sbTitles.append("</a></br>" + LINE_SEP);
+		}
+		int position = allIndex.indexOf(K_TABLE_CONTENTS);
+		StringBuffer sbNewIndex = new StringBuffer(128 * 1024);
+		if (position > 1) {
+			sbNewIndex.append(allIndex.substring(0,position));
+			sbNewIndex.append(sbTitles.toString());
+			sbNewIndex.append(allIndex.substring((position + K_TABLE_CONTENTS.length()), allIndex.length()));
+		}
+		sbTitles.append("</h4>" + LINE_SEP);
+
+		if (fileIndex.exists()) {
+			fileIndex.delete();
+		}
+		BufferedWriter out = new BufferedWriter(new FileWriter(fileIndex));
+		out.write(sbNewIndex.toString());
+		out.close();
 	}
 }
 
