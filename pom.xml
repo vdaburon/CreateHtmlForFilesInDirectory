@@ -60,6 +60,7 @@
     <properties>
         <project.java.version>1.8</project.java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <mavenCentralAutoReleaseAfterClose>false</mavenCentralAutoReleaseAfterClose>
      </properties>
 
     <build>
@@ -141,6 +142,10 @@
                 </executions>
             </plugin>
             <plugin>
+                <!-- deploy jar in maven central or stagging only : mvn clean deploy
+                 if autoReleaseAfterClose == true then release in maven central;
+                 if autoReleaseAfterClose == false then release in stagging only not maven central
+                -->
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
                 <version>1.7.0</version>
@@ -148,7 +153,7 @@
                 <configuration>
                     <serverId>ossrh</serverId>
                     <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
-                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                    <autoReleaseAfterClose>${mavenCentralAutoReleaseAfterClose}</autoReleaseAfterClose>
                 </configuration>
             </plugin>
         </plugins>
