@@ -130,7 +130,7 @@ and this plugin [csv-report-to-html](https://github.com/vdaburon/JMReportCsvToHt
 ## Versions
 Version 1.5 date 2025-04-27, Change links name for Table Of Contents to avoid conflict with links in included html page.
 
-Version 1.4 date 2025-04-26, add Table Of Contents and new property add_toc (default value : true)
+Version 1.4 date 2025-04-26, add Table Of Contents and new property add_toc (default value : true).
 
 Version 1.3 date 2023-05-10, Add extensions xlsx and xls (Excel file)
 
