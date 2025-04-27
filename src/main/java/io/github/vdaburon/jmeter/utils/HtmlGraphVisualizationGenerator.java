@@ -25,7 +25,8 @@ public class HtmlGraphVisualizationGenerator {
 	// CRLF ou LF ou CR
 	public static final String LINE_SEP = System.getProperty("line.separator");
 
-	public static final String K_TABLE_CONTENTS = "@@TABLE_OF_CONTENTS@@";
+	private static final String K_TABLE_CONTENTS = "@@TABLE_OF_CONTENTS@@";
+	private static final String K_LINK_PREFIX = "hgvg";
 	
 	public static void main(String[] args) {
 		
@@ -107,7 +108,7 @@ public class HtmlGraphVisualizationGenerator {
 					
 					// folderRead = c:\dir1\dir2\dirIn, f =  c:\dir1\dir2\dirIn\logo.gif => nameRelative = logo.gif (remove the folderRead path)
 					String nameRelative = f.getCanonicalPath().substring(fDirWithFiles.getCanonicalPath().length() + 1);
-					out.write("<p><a name=\"" + i + "\"></a></p>");
+					out.write("<p><a name=\"" + K_LINK_PREFIX + i + "\"></a></p>");
 					out.write(LINE_SEP);
 					out.write("<h2>" + nameRelative + "</h2><br/>");
 					out.write(LINE_SEP);
@@ -211,7 +212,7 @@ public class HtmlGraphVisualizationGenerator {
 		sbTitles.append("<h2>Table Of Contents</h2>" + LINE_SEP);
 		sbTitles.append("<h4>" + LINE_SEP);
 		for (int i = 0; i < listTitles.size(); i++) {
-			sbTitles.append("<a href=\"#" + i + "\">");
+			sbTitles.append("<a href=\"#" + K_LINK_PREFIX + i + "\">");
 			sbTitles.append(listTitles.get(i));
 			sbTitles.append("</a></br>" + LINE_SEP);
 		}

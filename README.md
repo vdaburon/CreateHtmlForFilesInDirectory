@@ -54,7 +54,7 @@ The maven groupId, artifactId and version, this plugin is in the **Maven Central
 ```xml
 <groupId>io.github.vdaburon</groupId>
 <artifactId>create-html-for-files-in-directory</artifactId>
-<version>1.4</version>
+<version>1.5</version>
 ```
 Just include the plugin in your `pom.xml` and execute `mvn verify` <br>
 or individual launch `mvn -Dimage_width=950 -Dadd_toc=false exec:java@create_html_page_for_files_in_directory`
@@ -70,7 +70,7 @@ or individual launch `mvn -Dimage_width=950 -Dadd_toc=false exec:java@create_htm
         <dependency>
             <groupId>io.github.vdaburon</groupId>
             <artifactId>create-html-for-files-in-directory</artifactId>
-            <version>1.4</version>
+            <version>1.5</version>
         </dependency>
     </dependencies>
     
@@ -128,6 +128,8 @@ and this plugin [csv-report-to-html](https://github.com/vdaburon/JMReportCsvToHt
 3) The **create-html-for-files-in-directory** create a page html this links to images and files in a directory to show and add links
 
 ## Versions
+Version 1.5 date 2025-04-27, Change links name for Table Of Contents to avoid conflict with links in included html page.
+
 Version 1.4 date 2025-04-26, add Table Of Contents and new property add_toc (default value : true)
 
 Version 1.3 date 2023-05-10, Add extensions xlsx and xls (Excel file)

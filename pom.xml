@@ -6,7 +6,7 @@
 
     <groupId>io.github.vdaburon</groupId>
     <artifactId>create-html-for-files-in-directory</artifactId>
-    <version>1.4</version>
+    <version>1.5</version>
     <packaging>jar</packaging>
     <name>Create html page for files in directory</name>
     <description>A tool that creates an html page for files in the directory to display graphics and link files</description>
@@ -68,7 +68,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.1</version>
+                <version>3.14.0</version>
                 <configuration>
                     <source>${project.java.version}</source>
                     <target>${project.java.version}</target>
