@@ -1,7 +1,8 @@
 # Generating an HTML page that references or includes various files
-This program recursively scans a directory looking for files of different types to generate a link or include the content in the generated html page.
+This program recursively scans a directory looking for files of different types to generate a link or include the content in the generated html page.<br/>
+Since version 1.5, a Table Of Content could be computed and add to the result page.
 
-The types of files searched are:
+The types (extensions) of files searched are:
  * csv
  * jtl
  * xml
@@ -21,7 +22,7 @@ The link is "&lt;a ref=" relative for files of type: csv, jtl, xml, gz, zip, log
 
 The link is "<img src=" relative for files of type: gif, png, bmp, jpg, jpeg (to view it)
 
-For html files, the content is read and directly included in the generated html page (blocks of html tables created with the csv-report-to-html tool from csv file). This HTML include file must not have elements &lt;html&gt; and &lt;/html&gt;.
+For html files, the content is read and directly included in the generated html page (blocks of html tables created with the csv-report-to-html tool from csv file). This HTML included file must not have elements &lt;html&gt; and &lt;/html&gt;.
 
 Sorting algorithm : Ascending alphabetical sorting but filenames with less directory deep are before file this directory
 <pre>
@@ -39,9 +40,6 @@ Change this values with system properties :
 - -Dimage_width=new_int_value (e.g: 1280)
 - -Dadd_toc=false (e.g: true or false)
 
-## License
-See the LICENSE file Apache 2 [https://www.apache.org/licenses/LICENSE-2.0](https://www.apache.org/licenses/LICENSE-2.0)
-
 ## The index.html generated
 HTML Extract example :
 
@@ -54,7 +52,7 @@ The maven groupId, artifactId and version, this plugin is in the **Maven Central
 ```xml
 <groupId>io.github.vdaburon</groupId>
 <artifactId>create-html-for-files-in-directory</artifactId>
-<version>1.5</version>
+<version>1.6</version>
 ```
 Just include the plugin in your `pom.xml` and execute `mvn verify` <br>
 or individual launch `mvn -Dimage_width=950 -Dadd_toc=false exec:java@create_html_page_for_files_in_directory`
@@ -70,7 +68,7 @@ or individual launch `mvn -Dimage_width=950 -Dadd_toc=false exec:java@create_htm
         <dependency>
             <groupId>io.github.vdaburon</groupId>
             <artifactId>create-html-for-files-in-directory</artifactId>
-            <version>1.5</version>
+            <version>1.6</version>
         </dependency>
     </dependencies>
     
@@ -120,6 +118,9 @@ or
 java -Dimage_width=900 -Dadd_toc=true -jar create-html-for-files-in-directory-&lt;version&gt;-jar-with-dependencies.jar jmeter/results index.html
 </pre>
 
+Remark : <br/>
+The result page could be in the parent directory like : ../index.html
+
 ## Link to others projects
 Usually this plugin is use with [jmeter-graph-tool-maven-plugin](https://github.com/vdaburon/jmeter-graph-tool-maven-plugin)<br>
 and this plugin [csv-report-to-html](https://github.com/vdaburon/JMReportCsvToHtml)
@@ -127,7 +128,12 @@ and this plugin [csv-report-to-html](https://github.com/vdaburon/JMReportCsvToHt
 2) The **csv-report-to-html** create the **html table report** from the csv file
 3) The **create-html-for-files-in-directory** create a page html this links to images and files in a directory to show and add links
 
+## License
+See the LICENSE file Apache 2 [https://www.apache.org/licenses/LICENSE-2.0](https://www.apache.org/licenses/LICENSE-2.0)
+
 ## Versions
+Version 1.6 date 2025-04-29, Compute relative path for result page to a parent directory, e.g: directory with file : "c:/dir/image" and result to parent directory "../index.html" links in index.html to relative sub directory "image/"
+
 Version 1.5 date 2025-04-27, Change links name for Table Of Contents to avoid conflict with links in included html page.
 
 Version 1.4 date 2025-04-26, add Table Of Contents and new property add_toc (default value : true).

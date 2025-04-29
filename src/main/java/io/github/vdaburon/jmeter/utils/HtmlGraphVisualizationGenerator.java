@@ -61,7 +61,28 @@ public class HtmlGraphVisualizationGenerator {
 			System.out.println("Delete previous file : " + fileIndex.getName());
 			fileIndex.delete();
 		}
-		
+
+		/* compute relative directory for page result, e.g: ../index.html */
+		String deltaPathRef = "";
+		try {
+			String sDirWithFilesCanonical = fDirWithFiles.getCanonicalPath();
+			String sFileIndexCanonical = fileIndex.getCanonicalPath();
+			String sDirWithFileIndex = new File(sFileIndexCanonical).getParent();
+
+			if (!sDirWithFilesCanonical.equals(sDirWithFileIndex)) {
+				boolean bDeltaPathRef = sDirWithFilesCanonical.contains(sDirWithFileIndex);
+				if (bDeltaPathRef) {
+					int index = sDirWithFilesCanonical.indexOf(sDirWithFileIndex);
+					deltaPathRef = sDirWithFilesCanonical.substring(index + sDirWithFileIndex.length() + 1, sDirWithFilesCanonical.length());
+					deltaPathRef = deltaPathRef + "/";
+					System.out.println("deltaPathRef=" + deltaPathRef);
+				}
+			}
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+
+
 		Object[] tabFiles = listFileOrderByName(fDirWithFiles);
 		ArrayList listTitles = new ArrayList<>();
 		
@@ -122,12 +143,12 @@ public class HtmlGraphVisualizationGenerator {
 
 						DecimalFormat formatter = new DecimalFormat("###,###.##", symbols);
 						// link to the file
-						out.write("<a href='" + nameRelative + "'>" + nameRelative + "</a>&nbsp;&nbsp;&nbsp;File size=" + formatter.format(lengthBytes) + " Bytes<br/><br/>");
+						out.write("<a href='" + deltaPathRef + nameRelative + "'>" + nameRelative + "</a>&nbsp;&nbsp;&nbsp;File size=" + formatter.format(lengthBytes) + " Bytes<br/><br/>");
 					}
 										
 					if (name.endsWith("gif") || name.endsWith("png") || name.endsWith("bmp") || name.endsWith("jpg") || name.endsWith("jpeg")) {
 						// image
-						out.write("<img src='" + nameRelative + "' width=\"" + imageWidth + "\"><br/><br/>");
+						out.write("<img src='" + deltaPathRef + nameRelative + "' width=\"" + imageWidth + "\"><br/><br/>");
 						out.write(LINE_SEP);
 					}
 				
