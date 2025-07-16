@@ -54,7 +54,7 @@ The maven groupId, artifactId and version, this plugin is in the **Maven Central
 ```xml
 <groupId>io.github.vdaburon</groupId>
 <artifactId>create-html-for-files-in-directory</artifactId>
-<version>1.7</version>
+<version>1.8</version>
 ```
 Just include the plugin in your `pom.xml` and execute `mvn verify` <br>
 or individual launch `mvn -Dimage_width=950 -Dadd_toc=false exec:java@create_html_page_for_files_in_directory`
@@ -70,7 +70,7 @@ or individual launch `mvn -Dimage_width=950 -Dadd_toc=false exec:java@create_htm
         <dependency>
             <groupId>io.github.vdaburon</groupId>
             <artifactId>create-html-for-files-in-directory</artifactId>
-            <version>1.7</version>
+            <version>1.8</version>
         </dependency>
     </dependencies>
     
@@ -134,6 +134,8 @@ and this plugin [csv-report-to-html](https://github.com/vdaburon/JMReportCsvToHt
 See the LICENSE file Apache 2 [https://www.apache.org/licenses/LICENSE-2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
 ## Versions
+Version 1.8 date 2025-07-16, Change the maven plugin and configuration to publish to maven central in pom.xml.
+
 Version 1.7 date 2025-07-11, Add extensions ".txt" and ".htm", ".htm" file is not include like ".html" file but like log file with a link a href. It's a solution to open another html page with a link.
 
 Version 1.6 date 2025-04-29, Compute relative path for result page to a parent directory, e.g: directory with file : "c:/dir/image" and result to parent directory "../index.html" links in index.html to relative sub directory "image/"
