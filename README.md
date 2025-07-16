@@ -17,12 +17,14 @@ The types (extensions) of files searched are:
  * jpg
  * jpeg
  * html
+ * txt
+ * htm
  
-The link is "&lt;a ref=" relative for files of type: csv, jtl, xml, gz, zip, log, xlsx, xls (to download it)
+The link is "&lt;a ref=" relative for files of type: csv, jtl, xml, gz, zip, log, xlsx, xls, txt, htm (to download it)
 
 The link is "<img src=" relative for files of type: gif, png, bmp, jpg, jpeg (to view it)
 
-For html files, the content is read and directly included in the generated html page (blocks of html tables created with the csv-report-to-html tool from csv file). This HTML included file must not have elements &lt;html&gt; and &lt;/html&gt;.
+For html files (.html), the content is read and directly included in the generated html page (blocks of html tables created with the csv-report-to-html tool from csv file). This HTML included file must not have elements &lt;html&gt; and &lt;/html&gt;. **Please note:** ".html" and ".htm" files are treated differently.
 
 Sorting algorithm : Ascending alphabetical sorting but filenames with less directory deep are before file this directory
 <pre>
@@ -52,7 +54,7 @@ The maven groupId, artifactId and version, this plugin is in the **Maven Central
 ```xml
 <groupId>io.github.vdaburon</groupId>
 <artifactId>create-html-for-files-in-directory</artifactId>
-<version>1.6</version>
+<version>1.7</version>
 ```
 Just include the plugin in your `pom.xml` and execute `mvn verify` <br>
 or individual launch `mvn -Dimage_width=950 -Dadd_toc=false exec:java@create_html_page_for_files_in_directory`
@@ -68,7 +70,7 @@ or individual launch `mvn -Dimage_width=950 -Dadd_toc=false exec:java@create_htm
         <dependency>
             <groupId>io.github.vdaburon</groupId>
             <artifactId>create-html-for-files-in-directory</artifactId>
-            <version>1.6</version>
+            <version>1.7</version>
         </dependency>
     </dependencies>
     
@@ -132,6 +134,8 @@ and this plugin [csv-report-to-html](https://github.com/vdaburon/JMReportCsvToHt
 See the LICENSE file Apache 2 [https://www.apache.org/licenses/LICENSE-2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
 ## Versions
+Version 1.7 date 2025-07-11, Add extensions ".txt" and ".htm", ".htm" file is not include like ".html" file but like log file with a link a href. It's a solution to open another html page with a link.
+
 Version 1.6 date 2025-04-29, Compute relative path for result page to a parent directory, e.g: directory with file : "c:/dir/image" and result to parent directory "../index.html" links in index.html to relative sub directory "image/"
 
 Version 1.5 date 2025-04-27, Change links name for Table Of Contents to avoid conflict with links in included html page.

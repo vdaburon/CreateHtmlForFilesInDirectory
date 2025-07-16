@@ -1,9 +1,7 @@
 package io.github.vdaburon.jmeter.utils;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
@@ -125,7 +123,7 @@ public class HtmlGraphVisualizationGenerator {
 				if (name.endsWith("csv") || name.endsWith("jtl") || name.endsWith("xml") ||name.endsWith("gz")  || name.endsWith("zip") || name.endsWith("log")
 						|| name.endsWith("xlsx") || name.endsWith("xls")
 						|| name.endsWith("gif") || name.endsWith("png") || name.endsWith("bmp") || name.endsWith("jpg") || name.endsWith("jpeg")
-						|| name.endsWith("html")) {
+						|| name.endsWith("html") || name.endsWith("htm") || name.endsWith("txt")) {
 					
 					// folderRead = c:\dir1\dir2\dirIn, f =  c:\dir1\dir2\dirIn\logo.gif => nameRelative = logo.gif (remove the folderRead path)
 					String nameRelative = f.getCanonicalPath().substring(fDirWithFiles.getCanonicalPath().length() + 1);
@@ -136,7 +134,8 @@ public class HtmlGraphVisualizationGenerator {
 					listTitles.add(nameRelative);
 
 					if (name.endsWith("csv") || name.endsWith("jtl") || name.endsWith("xml") ||name.endsWith("gz") || name.endsWith("zip") || name.endsWith("log") ||
-							name.endsWith("xlsx") || name.endsWith("xls")) {
+							name.endsWith("xlsx") || name.endsWith("xls") ||
+							name.endsWith("txt") || name.endsWith("htm")) {
 						long lengthBytes = f.length();
 						DecimalFormatSymbols symbols = DecimalFormatSymbols.getInstance();
 						symbols.setGroupingSeparator(' ');
@@ -152,7 +151,7 @@ public class HtmlGraphVisualizationGenerator {
 						out.write(LINE_SEP);
 					}
 				
-					if (name.endsWith("html")) {
+					if (name.endsWith("html")) { // not htm
 						// include the html content directly in the result for the Synthesis Report
 						String htmlPage = readAllFileToString(f.getAbsolutePath());
 						out.write(htmlPage);
