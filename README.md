@@ -1,4 +1,11 @@
 # Generating an HTML page that references or includes various files
+[![Maven Central](https://img.shields.io/maven-central/v/io.github.vdaburon/create-html-for-files-in-directory)](https://central.sonatype.com/artifact/io.github.vdaburon/create-html-for-files-in-directory)
+[![Apache License](http://img.shields.io/badge/license-Apache-green.svg)](https://github.com/vdaburon/CreateHtmlForFilesInDirectory/blob/main/LICENSE)
+![Free](https://img.shields.io/badge/free-open--source-green.svg)
+[![Apache JMeter](https://img.shields.io/badge/Apache%20JMeter-green)](https://jmeter.apache.org/)
+
+
+
 This program recursively scans a directory looking for files of different types to generate a link or include the content in the generated html page.<br/>
 Since version 1.5, a Table Of Content could be computed and add to the result page.
 
@@ -49,7 +56,8 @@ HTML Extract example :
 
 ## Usage Maven
 
-The maven groupId, artifactId and version, this plugin is in the **Maven Central Repository** [![Maven Central create-html-for-files-in-directory](https://maven-badges.herokuapp.com/maven-central/io.github.vdaburon/create-html-for-files-in-directory/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.vdaburon/create-html-for-files-in-directory)
+The maven groupId, artifactId and version, this plugin is in the **Maven Central Repository** [![Maven Central](https://img.shields.io/maven-central/v/io.github.vdaburon/create-html-for-files-in-directory)](https://central.sonatype.com/artifact/io.github.vdaburon/create-html-for-files-in-directory)
+
 
 ```xml
 <groupId>io.github.vdaburon</groupId>
