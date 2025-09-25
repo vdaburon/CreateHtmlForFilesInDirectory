@@ -62,7 +62,7 @@ The maven groupId, artifactId and version, this plugin is in the **Maven Central
 ```xml
 <groupId>io.github.vdaburon</groupId>
 <artifactId>create-html-for-files-in-directory</artifactId>
-<version>1.8</version>
+<version>1.9</version>
 ```
 Just include the plugin in your `pom.xml` and execute `mvn verify` <br>
 or individual launch `mvn -Dimage_width=950 -Dadd_toc=false exec:java@create_html_page_for_files_in_directory`
@@ -78,7 +78,7 @@ or individual launch `mvn -Dimage_width=950 -Dadd_toc=false exec:java@create_htm
         <dependency>
             <groupId>io.github.vdaburon</groupId>
             <artifactId>create-html-for-files-in-directory</artifactId>
-            <version>1.8</version>
+            <version>1.9</version>
         </dependency>
     </dependencies>
     
