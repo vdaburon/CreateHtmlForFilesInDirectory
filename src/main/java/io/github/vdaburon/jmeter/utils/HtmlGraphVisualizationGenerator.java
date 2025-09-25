@@ -236,6 +236,8 @@ public class HtmlGraphVisualizationGenerator {
 			sbTitles.append(listTitles.get(i));
 			sbTitles.append("</a></br>" + LINE_SEP);
 		}
+		sbTitles.append("</h4>" + LINE_SEP);
+
 		int position = allIndex.indexOf(K_TABLE_CONTENTS);
 		StringBuffer sbNewIndex = new StringBuffer(128 * 1024);
 		if (position > 1) {
@@ -243,7 +245,6 @@ public class HtmlGraphVisualizationGenerator {
 			sbNewIndex.append(sbTitles.toString());
 			sbNewIndex.append(allIndex.substring((position + K_TABLE_CONTENTS.length()), allIndex.length()));
 		}
-		sbTitles.append("</h4>" + LINE_SEP);
 
 		if (fileIndex.exists()) {
 			fileIndex.delete();
