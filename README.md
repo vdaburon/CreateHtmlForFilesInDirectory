@@ -142,7 +142,7 @@ and this plugin [csv-report-to-html](https://github.com/vdaburon/JMReportCsvToHt
 See the LICENSE file Apache 2 [https://www.apache.org/licenses/LICENSE-2.0](https://www.apache.org/licenses/LICENSE-2.0)
 
 ## Versions
-Version 1.9 date 2025-09-24, Correct end </h4> for Table Of Content, update central-publishing-maven-plugin version 0.9 (before 0.8)
+Version 1.9 date 2025-09-24, Correct end &lt;/h4&gt; for Table Of Content, update central-publishing-maven-plugin version 0.9 (before 0.8)
 
 Version 1.8 date 2025-07-16, Change the maven plugin and configuration to publish to maven central in pom.xml.
 
